@@ -1,0 +1,287 @@
+/* =====================================================
+   GRID ALBUM
+===================================================== */
+.album-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+/* =====================================================
+   ALBUM CARD
+===================================================== */
+.album-card{
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+  text-align: center;
+  padding-bottom: 12px;
+}
+
+.album-card img{
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+
+.album-card h4{
+  font-size: 13px;
+  margin: 8px 0 2px;
+  padding: 0 8px;
+  line-height: 1.4;
+}
+
+.album-card p{
+  font-size: 11px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+/* =====================================================
+   /* ================= ACTION BUTTON (KHUSUS HALAMAN GALERI) ================= */
+.album-card .action-row,
+.photo-card .action-row{
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-top: 10px;
+  padding: 0 10px 10px;
+  align-items: stretch;
+}
+
+/* Semua tombol di halaman galeri */
+.album-card .action-row .btn,
+.photo-card .action-row .btn-mini{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 38px;
+  padding: 0 12px;
+  margin: 0;
+
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+/* Tombol Edit (tombol pertama) */
+.album-card .action-row .btn:first-child{
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.album-card .action-row .btn:first-child:hover{
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* Tombol Hapus (album + foto) */
+.album-card .action-row .btn:last-child,
+.photo-card .action-row .btn-mini{
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.album-card .action-row .btn:last-child:hover,
+.photo-card .action-row .btn-mini:hover{
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+/* Efek klik */
+.album-card .action-row .btn:active,
+.photo-card .action-row .btn-mini:active{
+  transform: scale(0.98);
+}
+/* =====================================================
+   DETAIL MODE
+===================================================== */
+.album-detail{
+  width: 100%;
+  display: block;
+}
+
+/* =====================================================
+   HEADER ALBUM
+===================================================== */
+.album-header{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* =====================================================
+   BACK BUTTON
+===================================================== */
+.btn-back{
+  font-size: 11px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  background: #e5e7eb;
+  cursor: pointer;
+}
+
+.btn-back:hover{
+  background: #d1d5db;
+}
+
+/* =====================================================
+   TITLE
+===================================================== */
+.album-title h2{
+  font-size: 18px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.album-title p{
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+/* =====================================================
+   FOTO GRID
+   (TAMPIL SEPERTI GALERI FOTO YANG RAPI)
+===================================================== */
+.photo-grid{
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+  gap: 20px !important;
+  width: 100% !important;
+  align-items: start;
+}
+
+/* =====================================================
+   PHOTO CARD
+===================================================== */
+.photo-card{
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =====================================================
+   PHOTO IMAGE
+   - Tinggi seragam
+   - Tidak gepeng
+   - Thumbnail rapi
+===================================================== */
+.photo-card img{
+  width: 100% !important;
+  height: 200px !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  display: block;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+/* =====================================================
+   ACTION DI BAWAH FOTO
+===================================================== */
+.photo-card .action-row{
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  margin-top: 0;
+  width: 100%;
+}
+
+.photo-card .action-row .btn-mini{
+  flex: 1;
+}
+
+/* =====================================================
+   EMPTY TEXT
+===================================================== */
+.empty-text{
+  color: #6b7280;
+  font-size: 14px;
+  padding: 10px 0;
+}
+
+/* =====================================================
+   MODAL
+===================================================== */
+.modal{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.modal img{
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+@media (max-width: 768px){
+  .photo-grid{
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .photo-card img{
+    height: 140px !important;
+  }
+}
+@media(max-width: 768px) {
+
+  .album-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .album-card img {
+    height: 70px !important;
+  }
+
+  .album-card h4 {
+    font-size: 10px;
+  }
+
+  .album-card p {
+    font-size: 9px;
+  }
+
+  .album-card .action-row .btn {
+    font-size: 10px;
+    height: 28px;
+    padding: 0 6px;
+  }
+}

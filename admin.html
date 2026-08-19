@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Hero</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/admin.css">
+
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    .hero-preview{ margin-top:15px; }
+    .hero-preview img{
+      width:100%; max-width:500px; max-height:280px;
+      height:auto; display:none; margin:0 auto 14px;
+      border-radius:14px; object-fit:cover;
+    }
+    .hero-preview h2{ font-size:24px; margin-bottom:8px; color:#111827; }
+    .hero-preview p{ font-size:14px; color:#6b7280; line-height:1.6; }
+  </style>
+
+</head>
+
+<body class="admin">
+
+  <!-- SIDEBAR -->
+<aside class="sidebar">
+  <h2>Bukit Jarian</h2>
+  <nav>
+    <a href="admin.html">Hero</a>
+    <a href="admin-pengurus.html">Pengurus</a>
+    <a href="admin-galeri.html">Galeri</a>
+    <hr style="border-color:#ffffff33; margin:12px 0;">
+    <a href="index.html">← Kembali ke Website</a>
+  </nav>
+</aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <h1>Manajemen Hero</h1>
+      <a href="https://bukitjarian.web.app/index.html" class="logout-btn" onclick="logoutAdmin()">Logout</a>
+    </div>
+
+    <!-- FORM -->
+    <div class="card">
+      <h3>Edit Hero</h3>
+      <label>Judul Hero</label>
+      <input type="text" id="heroTitle" placeholder="Masukkan judul hero">
+      <label>Deskripsi Hero</label>
+      <textarea id="heroDesc" rows="5" placeholder="Masukkan deskripsi hero"></textarea>
+      <label>URL Gambar Hero</label>
+      <input
+  type="file"
+  id="imageFile"
+  accept="image/*"
+>
+
+<button
+  class="btn btn-primary"
+  onclick="saveHero()"
+>
+  Simpan
+</button>
+       </div>
+
+    <!-- PREVIEW -->
+    <div class="card hero-preview">
+      <h3>Preview Hero</h3>
+      <img id="previewHeroImg">
+      <h2 id="previewHeroTitle">Preview Judul</h2>
+      <p id="previewHeroDesc">Preview deskripsi hero</p>
+    </div>
+
+  </main>
+
+  <!-- LOGOUT SCRIPT -->
+  <script>
+    function logoutAdmin(){
+      localStorage.removeItem("isLogin");
+      window.location.href = "index.html";
+    }
+  </script>
+
+  <!-- FIREBASE SCRIPT -->
+  <script type="module" src="js/admin-hero.js"></script>
+<script type="module" src="js/notif.js"></script>
+<script type="module">
+  import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+  window.logoutAdmin = function() {
+    const auth = getAuth();
+    localStorage.setItem("logoutRedirect", "index.html"); // flag tujuan redirect
+    signOut(auth);
+  };
+</script>
+</body>
+</html>

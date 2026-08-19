@@ -1,0 +1,73 @@
+/* ================= HERO FORM ================= */
+.hero-form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* ================= HERO PREVIEW ================= */
+.hero-preview{
+  background:white;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 6px 15px rgba(0,0,0,0.06);
+}
+
+/* IMAGE */
+.hero-preview img{
+  width:100%;
+  max-height:320px;
+  object-fit:cover;
+  display:block;
+}
+
+/* CONTENT */
+.hero-content{
+  padding:18px;
+}
+
+.hero-content h2{
+  font-size:20px;
+  margin-bottom:8px;
+}
+
+.hero-content p{
+  font-size:14px;
+  color:#6b7280;
+  line-height:1.6;
+}
+
+/* ================= UPLOAD BOX ================= */
+.upload-box{
+  border:2px dashed #cbd5e1;
+  border-radius:14px;
+  padding:20px;
+  text-align:center;
+  background:#f8fafc;
+  transition:0.2s;
+}
+
+.upload-box:hover{
+  border-color:#2563eb;
+  background:#eff6ff;
+}
+
+/* ================= HERO ACTION ================= */
+.hero-actions{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+
+  .hero-content h2{
+    font-size:18px;
+  }
+
+  .hero-content p{
+    font-size:13px;
+  }
+
+}

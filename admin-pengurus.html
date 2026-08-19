@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Pengurus</title>
+
+<link rel="stylesheet" href="css/admin-base.css">
+<link rel="stylesheet" href="css/admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="admin">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <h2>Bukit Jarian</h2>
+  <nav>
+    <a href="admin.html">Hero</a>
+    <a href="admin-pengurus.html">Pengurus</a>
+    <a href="admin-galeri.html">Galeri</a>
+    <hr style="border-color:#ffffff33; margin:12px 0;">
+    <a href="index.html">← Kembali ke Website</a>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<main class="main-content">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <h1>Manajemen Pengurus</h1>
+    <a href="https://bukitjarian.web.app/index.html" class="logout-btn" onclick="logoutAdmin()">Logout</a>
+  </div>
+
+  <!-- HEADER FORM -->
+  <div class="card">
+    <h3>Header Halaman Pengurus</h3>
+    <label>Judul Halaman</label>
+    <input type="text" id="judulPengurus" placeholder="Struktur Pengurus">
+    <label>Deskripsi</label>
+    <input type="text" id="descPengurus" placeholder="Daftar pengurus organisasi">
+    <button class="btn btn-primary" onclick="simpanHeaderPengurus()">Simpan Header</button>
+  </div>
+
+  <!-- ACTION -->
+  <div class="card">
+    <div class="card-header">
+      <h3>Pengurus</h3>
+      <button class="btn btn-primary" onclick="openAdd()">+ Tambah Pengurus</button>
+    </div>
+  </div>
+
+  <!-- PREVIEW -->
+  <div class="card">
+    <h3>Preview Pengurus</h3>
+    <div id="listPengurus" class="thumb-grid"></div>
+  </div>
+
+</main>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-box">
+
+    <h3 id="modalTitle">Tambah Pengurus</h3>
+
+    <label>Nama</label>
+    <input type="text" id="namaInput" placeholder="Nama pengurus">
+
+    <label>Jabatan</label>
+    <input type="text" id="jabatanInput" placeholder="Ketua / Sekretaris / dll">
+
+    <label>Contact Person</label>
+    <input type="text" id="contactInput" placeholder="No. HP / WhatsApp (contoh: 08123456789)">
+
+   <label>Upload Foto</label>
+
+<input
+  type="file"
+  id="imageFile"
+  accept="image/*"
+>
+    <!-- PREVIEW FOTO -->
+    <img id="previewFoto" src="" alt="Preview">
+
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal()">Batal</button>
+      <button class="btn btn-primary" onclick="simpanPengurus()">Simpan</button>
+    </div>
+
+  </div>
+</div>
+
+<script type="module" src="js/admin-pengurus.js"></script>
+
+<script>
+function logoutAdmin(){
+  localStorage.removeItem("isLogin");
+  window.location.href = "index.html";
+}
+</script>
+<script type="module" src="js/notif.js"></script>
+<script type="module">
+  import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+  window.logoutAdmin = function() {
+    const auth = getAuth();
+    localStorage.setItem("logoutRedirect", "index.html"); // flag tujuan redirect
+    signOut(auth);
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Galeri</title>
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/admin-galeri.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="admin">
+
+<aside class="sidebar">
+  <h2>Bukit Jarian</h2>
+  <nav>
+    <a href="admin.html">Hero</a>
+    <a href="admin-pengurus.html">Pengurus</a>
+    <a href="admin-galeri.html">Galeri</a>
+    <hr style="border-color:#ffffff33; margin:12px 0;">
+    <a href="index.html">← Kembali ke Website</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="topbar">
+    <h1>Manajemen Galeri</h1>
+    <a href="https://bukitjarian.web.app/index.html" class="logout-btn" onclick="logoutAdmin()">Logout</a>
+  </div>
+
+  <!-- TAMBAH ALBUM -->
+  <div class="card">
+    <h3>Tambah Album</h3>
+    <label>Nama Album</label>
+    <input type="text" id="albumName" placeholder="Masukkan nama album">
+    <label>Tanggal Kegiatan</label>
+    <input type="date" id="albumDate">
+    <button class="btn btn-primary" onclick="buatAlbum()">+ Buat Album</button>
+  </div>
+
+  <!-- TAMBAH FOTO -->
+  <div class="card">
+    <h3>Tambah Foto</h3>
+    <label>Pilih Album</label>
+    <select id="albumSelect"></select>
+    <label>URL Foto</label>
+    <input type="file" id="imageFile" accept="image/*" multiple>
+    <!-- Progress upload foto (multi file) -->
+    <div id="fotoProgressWrap" style="display:none; margin-top:10px;">
+      <div style="background:#e5e7eb; border-radius:8px; overflow:hidden; height:10px;">
+        <div id="fotoProgressBar" style="width:0%; height:10px; background:#2563eb; transition:width 0.3s;"></div>
+      </div>
+      <p id="fotoProgressText" style="font-size:12px; color:#6b7280; margin-top:4px;">Mengupload...</p>
+    </div>
+    <button class="btn btn-primary" onclick="tambahFoto()" style="margin-top:12px;">Tambah Foto</button>
+  </div>
+
+  <!-- ===================== TAMBAH VIDEO (BARU) ===================== -->
+  <div class="card">
+    <h3>Tambah Video</h3>
+    <label>Pilih Album</label>
+    <select id="albumSelectVideo"></select>
+    <label>File Video</label>
+    <input type="file" id="videoFile" multiple>
+    <!-- Progress bar upload video -->
+    <div id="videoProgressWrap" style="display:none; margin-top:10px;">
+      <div style="background:#e5e7eb; border-radius:8px; overflow:hidden; height:10px;">
+        <div id="videoProgressBar" style="width:0%; height:10px; background:#2563eb; transition:width 0.3s;"></div>
+      </div>
+      <p id="videoProgressText" style="font-size:12px; color:#6b7280; margin-top:4px;">Mengupload...</p>
+    </div>
+    <button class="btn btn-primary" onclick="tambahVideo()" style="margin-top:12px;">Tambah Video</button>
+  </div>
+  <!-- ============================================================== -->
+
+  <!-- LIST ALBUM -->
+  <div class="card">
+    <h3>Album Galeri</h3>
+    <input
+      type="text"
+      id="searchAlbumAdmin"
+      placeholder="🔍 Cari album..."
+      oninput="filterAlbumAdmin()"
+    >
+    <div id="albumContainer" class="album-grid"></div>
+  </div>
+
+</main>
+
+<div id="modal" class="modal">
+  <img id="modalImg">
+</div>
+
+<script type="module" src="js/admin-galeri.js"></script>
+<script>
+function logoutAdmin(){
+  localStorage.removeItem("isLogin");
+  window.location.href = "index.html";
+}
+</script>
+<script type="module" src="js/notif.js"></script>
+<script type="module">
+  import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+  window.logoutAdmin = function() {
+    const auth = getAuth();
+    localStorage.setItem("logoutRedirect", "index.html");
+    signOut(auth);
+  };
+</script>
+</body>
+</html>

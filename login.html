@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Login Admin</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/login.css">
+
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="login-container">
+
+    <div class="login-box">
+
+      <form id="loginForm">
+
+        <div class="input-group">
+          <label>Email</label>
+
+          <input 
+            type="email" 
+            placeholder="Masukkan email"
+          >
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <div style="position:relative;">
+            <input 
+              type="password" 
+              placeholder="Masukkan password"
+              id="passwordAdmin"
+              style="padding-right:42px;width:100%;box-sizing:border-box;"
+            >
+            <span onclick="togglePassAdmin()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:18px;user-select:none;" id="eyeIconAdmin">👁️</span>
+          </div>
+        </div>
+
+        <button type="submit">
+          Login
+        </button>
+
+      </form>
+
+      <a href="index.html" class="back-link">
+        ← Kembali ke Beranda
+      </a>
+
+    </div>
+
+  </div>
+  <script>
+    function togglePassAdmin() {
+      const input = document.getElementById("passwordAdmin");
+      const icon = document.getElementById("eyeIconAdmin");
+      if (input.type === "password") {
+        input.type = "text";
+        icon.textContent = "🙈";
+      } else {
+        input.type = "password";
+        icon.textContent = "👁️";
+      }
+    }
+  </script>
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>

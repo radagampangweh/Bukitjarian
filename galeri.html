@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeri</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">Bukit Jarian</div>
+  <nav class="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="pengurus.html">Kepengurusan Rt</a>
+    <a href="galeri.html" class="active">Galeri</a>
+    <a href="login-user.html" id="navLoginBtn" class="login-btn">Login</a>
+  </nav>
+</header>
+
+<div class="content-box">
+  <section class="page-title">
+    <h1>Galeri Kegiatan</h1>
+    <p>Kumpulan dokumentasi kegiatan desa</p>
+  </section>
+
+  <div style="padding: 0 20px 16px;">
+    <input
+      type="text"
+      id="searchAlbum"
+      placeholder="🔍 Cari album..."
+      oninput="filterAlbum()"
+      style="width:100%; padding:10px 14px; border:1.5px solid #e5e7eb; border-radius:10px; font-family:inherit; font-size:14px; outline:none; background:#f9fafb; box-sizing:border-box;"
+    >
+  </div>
+
+  <section id="galeriContainer" class="galeri-grid"></section>
+</div>
+
+<!-- FIX: class tombol diganti modal-btn-prev / modal-btn-next -->
+<div id="modal" class="modal">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <button class="modal-btn-prev" onclick="prevPhoto()">&#8249;</button>
+  <img id="modalImg" alt="foto">
+  <button class="modal-btn-next" onclick="nextPhoto()">&#8250;</button>
+  <div id="modalCounter" class="modal-counter"></div>
+</div>
+
+<script type="module" src="js/galeri.js"></script>
+<script type="module" src="js/navbar.js"></script>
+</body>
+</html>

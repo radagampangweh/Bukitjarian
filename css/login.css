@@ -1,0 +1,146 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins', sans-serif;
+
+  background-image: url('../images/logo.jpg');
+background-size: cover;
+background-position: center;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  min-height:100vh;
+}
+
+/* ======================
+   LOGIN BOX
+====================== */
+.login-container{
+  width:100%;
+  padding:20px;
+}
+
+.login-box h1{
+  color: white;
+}
+
+.login-box p{
+  color: rgba(255,255,255,0.8);
+}
+
+/* ======================
+   INPUT
+====================== */
+.input-group{
+  margin-bottom:20px;
+}
+
+.input-group label{
+  display:block;
+
+  margin-bottom:8px;
+
+  font-size:14px;
+  font-weight:500;
+}
+
+.input-group input{
+  width:100%;
+
+  padding:13px;
+
+  border:1px solid #ddd;
+  border-radius:8px;
+
+  font-size:14px;
+
+  outline:none;
+}
+
+.input-group input:focus{
+  border-color:#1976d2;
+}
+
+/* ======================
+   BUTTON
+====================== */
+button{
+  width:100%;
+
+  padding:13px;
+
+  border:none;
+  border-radius:8px;
+
+  background:#1976d2;
+  color:white;
+
+  font-size:15px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+button:hover{
+  background:#1259a7;
+}
+
+/* ======================
+   BACK LINK
+====================== */
+.back-link{
+  display:block;
+
+  text-align:center;
+
+  margin-top:20px;
+
+  text-decoration:none;
+
+  color:#1976d2;
+
+  font-size:14px;
+}
+@media(max-width: 768px) {
+
+  .login-container {
+    width: 90%;
+    padding: 24px 20px;
+  }
+}@media(max-width: 768px) {
+
+  .login-container {
+    width: 95%;
+    padding: 16px;
+  }
+
+  .login-box {
+    padding: 24px 20px;
+  }
+
+  .login-box h1 {
+    font-size: 22px;
+  }
+
+  .login-box p {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .input-group input {
+    padding: 10px;
+  }
+
+  button {
+    padding: 11px;
+    font-size: 14px;
+  }
+}

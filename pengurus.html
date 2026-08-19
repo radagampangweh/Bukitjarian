@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pengurus</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">Bukit Jarian</div>
+  <nav class="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="pengurus.html" class="active">Kepengurusan RT</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="login-user.html" id="navLoginBtn" class="login-btn">Login</a>
+  </nav>
+</header>
+
+<!-- CONTENT -->
+<div class="content-box">
+  <section class="page-title">
+    <h1 id="judulPengurus">Loading...</h1>
+    <p id="descPengurus">Loading...</p>
+  </section>
+  <section id="pengurusContainer" class="grid-pengurus"></section>
+</div>
+
+<script type="module" src="js/pengurus.js"></script>
+<!-- MODAL FOTO -->
+<div id="modalFoto" class="modal" onclick="closeFoto()">
+  <button class="modal-close" onclick="closeFoto()">✕</button>
+  <img id="modalFotoImg">
+</div>
+<script type="module" src="js/navbar.js"></script>
+</body>
+</html>

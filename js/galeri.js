@@ -18,6 +18,8 @@ function getUrl(item) {
 
 let currentPhotos = [];
 let currentIndex = 0;
+let currentVideos = [];
+let currentVideoIndex = 0;
 let allAlbums = [];
 
 /* ================= INIT ================= */
@@ -141,6 +143,24 @@ function initVideoModal() {
       justify-content:center;
       z-index:10000;
     ">✕</button>
+    <button id="videoModalPrev" style="
+      position:absolute;
+      left:8px;
+      top:50%;
+      transform:translateY(-50%);
+      background:rgba(255,255,255,0.15);
+      border:none;
+      color:#fff;
+      font-size:32px;
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:10000;
+    ">&#8249;</button>
     <video id="videoModalPlayer" controls playsinline style="
       width:100%;
       max-width:100vw;
@@ -148,6 +168,36 @@ function initVideoModal() {
       background:#000;
       outline:none;
     "></video>
+    <button id="videoModalNext" style="
+      position:absolute;
+      right:8px;
+      top:50%;
+      transform:translateY(-50%);
+      background:rgba(255,255,255,0.15);
+      border:none;
+      color:#fff;
+      font-size:32px;
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:10000;
+    ">&#8250;</button>
+    <div id="videoModalCounter" style="
+      position:absolute;
+      bottom:16px;
+      left:50%;
+      transform:translateX(-50%);
+      color:#fff;
+      font-size:13px;
+      background:rgba(0,0,0,0.5);
+      padding:4px 12px;
+      border-radius:12px;
+      z-index:10000;
+    "></div>
   `;
 
   document.body.appendChild(modalEl);
@@ -157,19 +207,48 @@ function initVideoModal() {
   });
 
   document.getElementById("videoModalClose").addEventListener("click", closeVideoModal);
+  document.getElementById("videoModalPrev").addEventListener("click", prevVideo);
+  document.getElementById("videoModalNext").addEventListener("click", nextVideo);
 
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeVideoModal();
+    const modal = document.getElementById("videoModal");
+    if (modal && modal.style.display === "flex") {
+      if (e.key === "Escape") closeVideoModal();
+      if (e.key === "ArrowRight") nextVideo();
+      if (e.key === "ArrowLeft") prevVideo();
+    }
   });
 }
 
-window.openVideo = function (src) {
+window.openVideo = function (index) {
+  if (!Array.isArray(currentVideos) || currentVideos.length === 0) return;
+  if (index < 0 || index >= currentVideos.length) return;
+  currentVideoIndex = index;
   const modal = document.getElementById("videoModal");
   const player = document.getElementById("videoModalPlayer");
+  const counter = document.getElementById("videoModalCounter");
+  const prevBtn = document.getElementById("videoModalPrev");
+  const nextBtn = document.getElementById("videoModalNext");
   if (!modal || !player) return;
-  player.src = src;
+  player.src = currentVideos[index];
   modal.style.display = "flex";
   player.play().catch(() => {});
+  if (counter) counter.innerText = (index + 1) + " / " + currentVideos.length;
+  const showNav = currentVideos.length > 1;
+  if (prevBtn) prevBtn.style.display = showNav ? "flex" : "none";
+  if (nextBtn) nextBtn.style.display = showNav ? "flex" : "none";
+};
+
+window.nextVideo = function () {
+  if (currentVideos.length === 0) return;
+  currentVideoIndex = (currentVideoIndex + 1) % currentVideos.length;
+  openVideo(currentVideoIndex);
+};
+
+window.prevVideo = function () {
+  if (currentVideos.length === 0) return;
+  currentVideoIndex = (currentVideoIndex - 1 + currentVideos.length) % currentVideos.length;
+  openVideo(currentVideoIndex);
 };
 
 window.closeVideoModal = function () {
@@ -179,6 +258,7 @@ window.closeVideoModal = function () {
   player.pause();
   player.src = "";
   modal.style.display = "none";
+  currentVideoIndex = 0;
 };
 
 /* ================= SHARE ================= */
@@ -335,11 +415,11 @@ window.openAlbum = async function (docId) {
     .map(getUrl)
     .filter(img => img && img !== "undefined" && img.startsWith("http"));
 
-  const videos = (album.videos || [])
+  currentVideos = (album.videos || [])
     .filter(v => v && v.startsWith("http"));
 
   const jumlahFoto = currentPhotos.length;
-  const jumlahVideo = videos.length;
+  const jumlahVideo = currentVideos.length;
 
   const shareUrl = `${location.origin}${location.pathname}?album=${docId}`;
   const shareText = encodeURIComponent(`Lihat album "${album.album || "Galeri"}" di Bukit Jarian: ${shareUrl}`);
@@ -398,10 +478,9 @@ window.openAlbum = async function (docId) {
   if (jumlahVideo === 0) {
     html += `<p class="empty-text">Belum ada video</p>`;
   } else {
-    videos.forEach(vid => {
-      const vidEsc = vid.replace(/'/g, "\\'");
+    currentVideos.forEach((vid, vIdx) => {
       html += `
-        <div class="photo-card" onclick="openVideo('${vidEsc}')" style="cursor:pointer; position:relative;">
+        <div class="photo-card" onclick="openVideo(${vIdx})" style="cursor:pointer; position:relative;">
           <video preload="metadata" style="width:100%; border-radius:8px; pointer-events:none; display:block;">
             <source src="${vid}#t=0.1">
           </video>

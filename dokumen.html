@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dokumen</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dokumen.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">Bukit Jarian</div>
+  <nav class="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="pengurus.html">Kepengurusan RT</a>
+    <a href="galeri.html">Galeri</a>
+    <a href="dokumen.html" class="active">Dokumen</a>
+    <a href="login.html" id="navLoginBtn" class="login-btn">Login</a>
+  </nav>
+</header>
+
+<div class="content-box">
+  <section class="dokumen-view">
+
+    <div class="dokumen-view-header">
+      <h2>Dokumen RT</h2>
+      <p>Pembukuan dan arsip dokumen RT. Halaman ini hanya bisa diakses oleh admin.</p>
+    </div>
+
+    <input
+      type="text"
+      id="searchDokumenPublik"
+      placeholder="🔍 Cari dokumen..."
+      oninput="filterDokumenPublik()"
+    >
+
+    <div id="dokumenListPublik"></div>
+
+  </section>
+</div>
+
+<script type="module" src="js/auth-check.js"></script>
+<script type="module" src="js/navbar.js"></script>
+<script type="module" src="js/dokumen.js"></script>
+
+</body>
+</html>

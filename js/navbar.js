@@ -12,6 +12,13 @@ onAuthStateChanged(auth, (user) => {
     adminLink.style.marginRight = "10px";
     navBtn.parentNode.insertBefore(adminLink, navBtn);
 
+    // Tambahkan link Dokumen di navbar (hanya untuk admin yang login)
+    const dokumenLink = document.createElement("a");
+    dokumenLink.href = "dokumen.html";
+    dokumenLink.textContent = "Dokumen";
+    dokumenLink.style.marginRight = "10px";
+    navBtn.parentNode.insertBefore(dokumenLink, navBtn);
+
     // Ubah tombol jadi Logout
     navBtn.textContent = `Logout (${user.email})`;
     navBtn.href = "#";

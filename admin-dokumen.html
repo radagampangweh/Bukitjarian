@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin Dokumen</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/admin-dokumen.css">
+
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="admin">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2>Bukit Jarian</h2>
+    <nav>
+      <a href="admin.html">Hero</a>
+      <a href="admin-pengurus.html">Pengurus</a>
+      <a href="admin-galeri.html">Galeri</a>
+      <a href="admin-dokumen.html" class="active">Dokumen</a>
+      <hr style="border-color:#ffffff33; margin:12px 0;">
+      <a href="index.html">← Kembali ke Website</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <h1>Dokumen Pembukuan RT</h1>
+      <a href="https://bukitjarian.web.app/index.html" class="logout-btn" onclick="logoutAdmin()">Logout</a>
+    </div>
+
+    <div class="card" style="background:#fffbeb; border:1px solid #fde68a;">
+      <p style="color:#92400e; margin:0;">🔒 Dokumen di halaman ini bersifat privat. Hanya admin yang login yang bisa melihat, mengunduh, atau menghapusnya.</p>
+    </div>
+
+    <!-- UPLOAD -->
+    <div class="card">
+      <h3>Upload Dokumen</h3>
+
+      <label>Keterangan / Nama Dokumen</label>
+      <input type="text" id="docKeterangan" placeholder="Contoh: Pembukuan Kas RT - Agustus 2026">
+
+      <label>Pilih File (bisa lebih dari satu)</label>
+      <input type="file" id="docFile" multiple>
+
+      <div id="docProgressWrap" style="display:none; margin:10px 0;">
+        <div style="background:#e5e7eb; border-radius:8px; overflow:hidden; height:10px;">
+          <div id="docProgressBar" style="width:0%; height:10px; background:#2563eb; transition:width 0.3s;"></div>
+        </div>
+        <p id="docProgressText" style="font-size:12px; color:#6b7280; margin-top:4px;">Mengupload...</p>
+      </div>
+
+      <button class="btn btn-primary" onclick="uploadDokumen()">Upload Dokumen</button>
+    </div>
+
+    <!-- LIST -->
+    <div class="card">
+      <h3>Daftar Dokumen</h3>
+      <input
+        type="text"
+        id="searchDokumen"
+        placeholder="🔍 Cari dokumen..."
+        oninput="filterDokumen()"
+        style="margin-bottom:14px;"
+      >
+      <div id="dokumenList"></div>
+    </div>
+
+  </main>
+
+  <!-- EDIT MODAL -->
+  <div id="editModal" class="modal">
+    <div class="modal-box">
+      <h3>Edit Keterangan Dokumen</h3>
+      <label>Keterangan / Nama Dokumen</label>
+      <input type="text" id="editKeterangan">
+      <div class="action-buttons">
+        <button class="btn btn-secondary" style="flex:1;" onclick="closeEditModal()">Batal</button>
+        <button class="btn btn-primary" style="flex:1;" onclick="saveEditDokumen()">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGOUT SCRIPT -->
+  <script>
+    function logoutAdmin(){
+      localStorage.removeItem("isLogin");
+      window.location.href = "index.html";
+    }
+  </script>
+
+  <!-- FIREBASE SCRIPT -->
+  <script type="module" src="js/auth-check.js"></script>
+  <script type="module" src="js/admin-dokumen.js"></script>
+  <script type="module" src="js/notif.js"></script>
+  <script type="module">
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+    window.logoutAdmin = function() {
+      const auth = getAuth();
+      localStorage.setItem("logoutRedirect", "index.html");
+      signOut(auth);
+    };
+  </script>
+</body>
+</html>
